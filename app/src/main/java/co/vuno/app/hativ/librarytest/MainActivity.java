@@ -21,7 +21,6 @@ import co.vuno.app.hativ.hativlibrary.util.bluetooth.HativPermissionException;
 import co.vuno.app.hativ.hativlibrary.util.bluetooth.enumeration.ConnectStatus;
 import co.vuno.app.hativ.hativlibrary.util.bluetooth.enumeration.MeasureStatus;
 import co.vuno.app.hativ.hativlibrary.util.bluetooth.listener.HativStatusListener;
-import co.vuno.app.hativ.hativlibrarytest.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onMeasureResult(AnalysisStatus status, EcgResult result) {
                     if (result != null) {
-                        System.out.println("[onMeasureResult]" + result.rhythm);
+                        System.out.println("[onMeasureResult]" + result.rhythmTypes);
+
                     }else {
                         System.out.println("[onMeasureResult]" + status);
                     }
