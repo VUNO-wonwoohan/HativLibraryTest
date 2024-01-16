@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     HativEcgMeasureManager manager;
     HativEcgMeasureOptions options;
-    String hativToken = "";
+    String hativToken = "7f26e92af2e04654c31e5b77";
 
     private final String[] permissions = new String[]{
             android.Manifest.permission.ACCESS_FINE_LOCATION,
@@ -83,11 +83,17 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onMeasureResult(AnalysisStatus status, EcgResult result) {
                     if (result != null) {
+//                        result.getResultPdf(getApplicationContext());
                         System.out.println("[onMeasureResult]" + result.rhythmTypes);
 
                     }else {
                         System.out.println("[onMeasureResult]" + status);
                     }
+                }
+
+                @Override
+                public void onBatteryInfo(int level, boolean isCharging) {
+                    System.out.println("[onBatteryInfo]" + level + " " + isCharging);
                 }
             });
 
