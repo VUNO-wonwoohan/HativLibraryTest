@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        findViewById(R.id.btn_retry).setOnClickListener(v -> {
+            manager.connectDevice(options);
+        });
         checkPermissions();
     }
 
@@ -78,13 +80,16 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onConnectEvent(ConnectStatus status) {
                     System.out.println("[onConnectEvent]" + status.name());
+                    if (status == ConnectStatus.scanTimeout) {
+                        //TODO 타임아웃 안내
+                    }
                 }
 
                 @Override
                 public void onMeasureResult(AnalysisStatus status, EcgResult result) {
                     if (result != null) {
 //                        result.getResultPdf(getApplicationContext());
-                        System.out.println("[onMeasureResult]" + result.rhythmTypes);
+                        System.out.println("[onMeasureResult]" + result.rhythm);
 
                     }else {
                         System.out.println("[onMeasureResult]" + status);
