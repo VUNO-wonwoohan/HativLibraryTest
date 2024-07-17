@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_retry).setOnClickListener(v -> {
-            manager.connectDevice(options);
+            HativEcgMeasureManager.getInstance().connectDevice(options);
         });
         checkPermissions();
     }
@@ -53,16 +53,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (deniedList.isEmpty()) {
-            initBluetoothInstance(hativToken);
+
+            initBluetoothInstance();
             return true;
         }else {
             return false;
         }
     }
 
-    private void initBluetoothInstance(String token) {
+    private void initBluetoothInstance() {
         try {
-            manager = HativEcgMeasureManager.getInstance(getApplicationContext(), token);
+            manager = HativEcgMeasureManager.getInstance(getApplicationContext(), hativToken);
 
             //측정방법 설정, event-listener 등록.
             //연결된 기기에 대한 응답은 HativStatusListener로 전달받음.
