@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_retry).setOnClickListener(v -> {
+            HativEcgMeasureManager.getInstance().clearRegistrationDevice();
             HativEcgMeasureManager.getInstance().connectDevice(options);
         });
         checkPermissions();
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("[onBatteryInfo]" + level + " " + isCharging);
                 }
             });
-//            manager.clearRegistrationDevice();
+            manager.clearRegistrationDevice();
             //P30 디바이스를 검색 및 연결.
             manager.connectDevice(options);
         } catch (HativPermissionException e) {
