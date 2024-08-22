@@ -92,10 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onMeasureResult(AnalysisStatus status, EcgResult result) {
                     if (result != null) {
 //                        result.getResultPdf(getApplicationContext());
-                        System.out.println("[onMeasureResult]" +status+ "/" + result.rhythm);
-                        if (result.rhythm == null) {
-                            System.out.println("[onMeasureResult]" + manager.retryAnalysis());
-                        }
+                        System.out.println("[onMeasureResult]" +status+ "/" + result.rhythmTypes);
                     }else {
                         System.out.println("[onMeasureResult]" + status);
                     }
@@ -107,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             manager.clearRegistrationDevice();
+//            options.setScanTimeoutSeconds(2);
             //P30 디바이스를 검색 및 연결.
             manager.connectDevice(options);
         } catch (HativPermissionException e) {
